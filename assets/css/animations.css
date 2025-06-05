@@ -1,0 +1,345 @@
+@keyframes slidePattern {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(50px); }
+}
+
+@keyframes floatAround {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(180deg); }
+}
+
+@keyframes dropDown {
+    0% { transform: translateY(-100vh); opacity: 0; }
+    10% { opacity: 0.1; }
+    90% { opacity: 0.1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+}
+
+@keyframes spinAround {
+    0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+}
+
+@keyframes blinkCursor {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+@keyframes breathe {
+    0%, 100% { transform: scale(1); opacity: 0.1; }
+    50% { transform: scale(1.2); opacity: 0.2; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.grid-pattern {
+    animation: slidePattern 20s linear infinite;
+}
+
+.brand::after {
+    content: '_';
+    animation: blinkCursor 1s infinite;
+}
+
+.dot {
+    animation: floatAround 6s ease-in-out infinite;
+}
+
+.falling-code {
+    animation: dropDown 8s linear infinite;
+}
+
+.shape {
+    animation: spinAround 15s linear infinite;
+}
+
+.photo-area::before {
+    animation: spinAround 20s linear infinite;
+}
+
+.hero-area::before {
+    animation: breathe 4s ease-in-out infinite;
+}
+
+.hero-area::after {
+    animation: breathe 4s ease-in-out infinite 2s;
+}
+
+.hero-text h1 {
+    animation: slideUp 1s ease;
+}
+
+.hero-text .job-title {
+    animation: slideUp 1s ease 0.2s both;
+}
+
+.hero-text .code-text {
+    animation: slideUp 1s ease 0.4s both;
+}
+
+.hero-text p {
+    animation: slideUp 1s ease 0.6s both;
+}
+
+.action-buttons {
+    animation: slideUp 1s ease 0.8s both;
+}
+
+.menu a {
+    transition: all 0.3s ease;
+}
+
+.menu a:hover {
+    color: var(--soft-purple);
+}
+
+.button {
+    transition: all 0.3s ease;
+}
+
+.main-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(255, 149, 0, 0.4);
+}
+
+.alt-button:hover {
+    background: var(--main-purple);
+    color: var(--dark-bg);
+    box-shadow: var(--purple-glow);
+}
+
+.my-photo {
+    transition: all 0.3s ease;
+}
+
+.my-photo:hover {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+.skill-box {
+    transition: all 0.3s ease;
+}
+
+.skill-box:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--orange-glow);
+    border-color: var(--glass-edge);
+}
+
+.skill-box:hover::after {
+    opacity: 1;
+}
+
+.skill-item {
+    transition: all 0.3s ease;
+}
+
+.skill-item::before {
+    transition: left 0.3s ease;
+}
+
+.skill-item:hover::before {
+    left: 0;
+}
+
+.skill-item:hover {
+    color: var(--dark-bg);
+    border-color: var(--main-orange);
+}
+
+.project-box {
+    transition: all 0.3s ease;
+}
+
+.project-box::before {
+    transition: opacity 0.3s ease;
+}
+
+.project-box:hover::before {
+    opacity: 0.05;
+}
+
+.project-box:hover {
+    transform: translateY(-10px);
+}
+
+.project-icon::before {
+    transition: opacity 0.3s ease;
+}
+
+.project-box:hover .project-icon::before {
+    opacity: 0.1;
+}
+
+.project-link {
+    transition: all 0.3s ease;
+}
+
+.project-link:hover {
+    color: var(--light-orange);
+    transform: translateX(5px);
+}
+
+.step-content {
+    transition: all 0.3s ease;
+}
+
+.step-content:hover {
+    border-color: var(--main-orange);
+    box-shadow: var(--orange-glow);
+}
+
+.contact-detail {
+    transition: all 0.3s ease;
+}
+
+.contact-detail:hover {
+    color: var(--main-blue);
+    background: var(--darkest-bg);
+}
+
+.message-form::before {
+    transition: opacity 0.3s ease;
+}
+
+.message-form:hover::before {
+    opacity: 1;
+}
+
+.input-group input,
+.input-group textarea {
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    border-color: var(--main-orange);
+    box-shadow: 0 0 10px rgba(255, 149, 0, 0.3);
+}
+
+.social-icon {
+    transition: all 0.3s ease;
+}
+
+.social-icon::before {
+    transition: left 0.3s ease;
+}
+
+.social-icon:hover::before {
+    left: 0;
+}
+
+.social-icon:hover {
+    color: var(--dark-bg);
+    transform: translateY(-3px);
+    box-shadow: var(--orange-glow);
+}
+
+.top-button {
+    transition: all 0.3s ease;
+}
+
+.top-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(255, 149, 0, 0.4);
+}
+
+.resume-button {
+    transition: all 0.3s ease;
+}
+
+.resume-button::before {
+    transition: left 0.5s;
+}
+
+.resume-button:hover::before {
+    left: 100%;
+}
+
+.resume-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(255, 149, 0, 0.4);
+}
+
+.button::before {
+    transition: left 0.5s;
+}
+
+.button:hover::before {
+    left: 100%;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.menu a::after {
+    transition: width 0.3s ease;
+}
+
+.skill-box::after {
+    transition: opacity 0.3s ease;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.code-text {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--main-orange);
+}
+
+.dot,
+.falling-code,
+.shape,
+.project-box,
+.skill-box,
+.button,
+.social-icon {
+    will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .grid-pattern,
+    .dot,
+    .falling-code,
+    .shape {
+        animation: none;
+    }
+    
+    .fade-in {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
