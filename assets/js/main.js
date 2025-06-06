@@ -1,12 +1,17 @@
+// Core Portfolio Functionality
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Portfolio initializing...');
+    
     initializeNavigation();
-    initializeScrollEffects();
     initializeContactForm();
     initializeMenuToggle();
     initializeScrollToTop();
     initializeResumeDownload();
-    setupIntersectionObserver();
     setupActiveNavigation();
+    initializeAccessibility();
+    
+    // Ensure content is visible
+    forceShowContent();
 });
 
 function initializeNavigation() {
@@ -22,40 +27,20 @@ function initializeNavigation() {
                     block: 'start'
                 });
                 
+                // Close mobile menu if open
                 const navMenu = document.getElementById('navigation');
                 const menuToggle = document.getElementById('menuToggle');
-                if (navMenu.classList.contains('open')) {
+                if (navMenu && navMenu.classList.contains('open')) {
                     navMenu.classList.remove('open');
                     const menuIcon = menuToggle.querySelector('i');
-                    menuIcon.classList.remove('fa-times');
-                    menuIcon.classList.add('fa-bars');
+                    if (menuIcon) {
+                        menuIcon.classList.remove('fa-times');
+                        menuIcon.classList.add('fa-bars');
+                    }
                 }
             }
         });
     });
-}
-
-function initializeScrollEffects() {
-    const typingElement = document.querySelector('.code-text');
-    if (typingElement) {
-        const originalContent = typingElement.textContent;
-        typeText(typingElement, originalContent, 100);
-    }
-}
-
-function typeText(element, text, speed = 100) {
-    let currentChar = 0;
-    element.innerHTML = '';
-    
-    function addChar() {
-        if (currentChar < text.length) {
-            element.innerHTML += text.charAt(currentChar);
-            currentChar++;
-            setTimeout(addChar, speed);
-        }
-    }
-    
-    setTimeout(addChar, 1000);
 }
 
 function initializeContactForm() {
@@ -66,19 +51,28 @@ function initializeContactForm() {
             e.preventDefault();
             
             const formData = new FormData(this);
-            const userName = formData.get('name');
-            const userEmail = formData.get('email');
-            const userMessage = formData.get('message');
+            const userName = formData.get('name') || 'Unknown';
+            const userEmail = formData.get('email') || '';
+            const userMessage = formData.get('message') || '';
+            
+            if (!userName.trim() || !userEmail.trim() || !userMessage.trim()) {
+                showNotification('Please fill in all fields before submitting.');
+                return;
+            }
             
             const emailSubject = `Portfolio Contact from ${userName}`;
             const emailBody = `Hello Manan,\n\n${userMessage}\n\nBest regards,\n${userName}\n${userEmail}`;
             
             const mailLink = `mailto:manan2301patel@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
             
-            window.location.href = mailLink;
-            
-            this.reset();
-            showNotification('Email client opened! Thank you for reaching out.');
+            try {
+                window.location.href = mailLink;
+                this.reset();
+                showNotification('Email client opened! Thank you for reaching out.');
+            } catch (error) {
+                console.error('Email error:', error);
+                showNotification('Please email me directly at manan2301patel@gmail.com');
+            }
         });
     }
 }
@@ -92,8 +86,22 @@ function initializeMenuToggle() {
             navigation.classList.toggle('open');
             
             const menuIcon = this.querySelector('i');
-            menuIcon.classList.toggle('fa-bars');
-            menuIcon.classList.toggle('fa-times');
+            if (menuIcon) {
+                menuIcon.classList.toggle('fa-bars');
+                menuIcon.classList.toggle('fa-times');
+            }
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!menuToggle.contains(e.target) && !navigation.contains(e.target)) {
+                navigation.classList.remove('open');
+                const menuIcon = menuToggle.querySelector('i');
+                if (menuIcon) {
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                }
+            }
         });
     }
 }
@@ -102,11 +110,20 @@ function initializeScrollToTop() {
     const scrollButton = document.getElementById('backToTop');
     
     if (scrollButton) {
+        // Throttle scroll events for better performance
+        let isScrolling = false;
+        
         window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 300) {
-                scrollButton.classList.add('visible');
-            } else {
-                scrollButton.classList.remove('visible');
+            if (!isScrolling) {
+                window.requestAnimationFrame(function() {
+                    if (window.pageYOffset > 300) {
+                        scrollButton.classList.add('visible');
+                    } else {
+                        scrollButton.classList.remove('visible');
+                    }
+                    isScrolling = false;
+                });
+                isScrolling = true;
             }
         });
         
@@ -125,63 +142,170 @@ function initializeResumeDownload() {
     if (resumeButton) {
         resumeButton.addEventListener('click', function(e) {
             e.preventDefault();
-            
             showNotification('Resume download will be available soon! Please contact me directly at manan2301patel@gmail.com for my latest resume.');
         });
     }
 }
 
-function setupIntersectionObserver() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+function setupActiveNavigation() {
+    let isScrolling = false;
+    
+    window.addEventListener('scroll', function() {
+        if (!isScrolling) {
+            window.requestAnimationFrame(function() {
+                const sections = document.querySelectorAll('section');
+                const navLinks = document.querySelectorAll('.menu a');
+                
+                let currentSection = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.fade-in').forEach(element => {
-        observer.observe(element);
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSection}`) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                isScrolling = false;
+            });
+            isScrolling = true;
+        }
     });
 }
 
-function setupActiveNavigation() {
-    window.addEventListener('scroll', function() {
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.menu a');
-        
-        let currentSection = '';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            
-            if (scrollY >= (sectionTop - 200)) {
-                currentSection = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${currentSection}`) {
-                link.classList.add('active');
-            }
-        });
+function initializeAccessibility() {
+    // Skip link for accessibility
+    const skipLink = document.createElement('a');
+    skipLink.href = '#main';
+    skipLink.className = 'skip-link';
+    skipLink.textContent = 'Skip to main content';
+    skipLink.style.cssText = `
+        position: absolute;
+        top: -40px;
+        left: 6px;
+        background: var(--main-orange);
+        color: var(--dark-bg);
+        padding: 8px;
+        text-decoration: none;
+        border-radius: 4px;
+        z-index: 9999;
+        transition: top 0.3s;
+        font-weight: 600;
+    `;
+    
+    skipLink.addEventListener('focus', function() {
+        this.style.top = '6px';
     });
+    
+    skipLink.addEventListener('blur', function() {
+        this.style.top = '-40px';
+    });
+    
+    document.body.insertBefore(skipLink, document.body.firstChild);
+    
+    // Keyboard navigation for menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    if (menuToggle) {
+        menuToggle.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
+    }
+    
+    // Focus management for mobile menu
+    const navigation = document.getElementById('navigation');
+    if (navigation) {
+        const menuLinks = navigation.querySelectorAll('a');
+        menuLinks.forEach((link, index) => {
+            link.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab' && index === menuLinks.length - 1 && navigation.classList.contains('open')) {
+                    setTimeout(() => {
+                        navigation.classList.remove('open');
+                        const menuIcon = menuToggle.querySelector('i');
+                        if (menuIcon) {
+                            menuIcon.classList.remove('fa-times');
+                            menuIcon.classList.add('fa-bars');
+                        }
+                    }, 100);
+                }
+            });
+        });
+    }
 }
 
 function showNotification(message) {
-    alert(message);
+    // Create a better notification system
+    const notification = document.createElement('div');
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--main-orange);
+        color: var(--dark-bg);
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 600;
+        z-index: 10000;
+        max-width: 300px;
+        box-shadow: var(--orange-glow);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Slide in
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Remove after 5 seconds
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 5000);
 }
 
-function smoothScrollPolyfill() {
-    if (!window.CSS || !window.CSS.supports('scroll-behavior', 'smooth')) {
+function forceShowContent() {
+    // Ensure all content is visible even if animations fail
+    setTimeout(() => {
+        const fadeElements = document.querySelectorAll('.fade-in');
+        fadeElements.forEach(element => {
+            if (!element.classList.contains('visible')) {
+                element.classList.add('visible');
+                console.log('Force showing:', element);
+            }
+        });
+        
+        // Special handling for sections that might be hidden
+        const sections = document.querySelectorAll('section');
+        sections.forEach(section => {
+            section.style.opacity = '1';
+            section.style.transform = 'translateY(0)';
+        });
+        
+        console.log('Content visibility ensured');
+    }, 2000);
+}
+
+// Smooth scroll polyfill for older browsers
+function initializeSmoothScrollPolyfill() {
+    if (!('scrollBehavior' in document.documentElement.style)) {
         const links = document.querySelectorAll('a[href^="#"]');
         
         links.forEach(link => {
@@ -192,7 +316,7 @@ function smoothScrollPolyfill() {
                 const targetElement = document.querySelector(targetId);
                 
                 if (targetElement) {
-                    const targetPosition = targetElement.offsetTop;
+                    const targetPosition = targetElement.offsetTop - 80;
                     const startPosition = window.pageYOffset;
                     const distance = targetPosition - startPosition;
                     const duration = 1000;
@@ -223,6 +347,28 @@ function smoothScrollPolyfill() {
     }
 }
 
+// Error handling
+window.addEventListener('error', function(e) {
+    console.error('Portfolio Error:', e.error);
+    
+    // Ensure content is visible even if there are errors
+    forceShowContent();
+});
+
+// Initialize additional features when page loads
+window.addEventListener('load', function() {
+    initializeSmoothScrollPolyfill();
+    
+    // Log successful initialization
+    console.log('Portfolio fully loaded');
+});
+
+// Handle viewport changes
+window.addEventListener('resize', debounce(function() {
+    // Refresh any layout-dependent features
+    setupActiveNavigation();
+}, 250));
+
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -234,73 +380,3 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
-
-function initializeAccessibility() {
-    const skipLink = document.createElement('a');
-    skipLink.href = '#main';
-    skipLink.className = 'skip-link';
-    skipLink.textContent = 'Skip to main content';
-    skipLink.style.cssText = `
-        position: absolute;
-        top: -40px;
-        left: 6px;
-        background: var(--main-orange);
-        color: var(--dark-bg);
-        padding: 8px;
-        text-decoration: none;
-        border-radius: 4px;
-        z-index: 9999;
-        transition: top 0.3s;
-    `;
-    
-    skipLink.addEventListener('focus', function() {
-        this.style.top = '6px';
-    });
-    
-    skipLink.addEventListener('blur', function() {
-        this.style.top = '-40px';
-    });
-    
-    document.body.insertBefore(skipLink, document.body.firstChild);
-    
-    const menuToggle = document.getElementById('menuToggle');
-    const navigation = document.getElementById('navigation');
-    
-    if (menuToggle && navigation) {
-        menuToggle.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                this.click();
-            }
-        });
-    }
-}
-
-window.addEventListener('error', function(e) {
-    console.error('JavaScript Error:', e.error);
-});
-
-function initializeLazyLoading() {
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.classList.remove('lazy');
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
-
-        document.querySelectorAll('img[data-src]').forEach(img => {
-            imageObserver.observe(img);
-        });
-    }
-}
-
-window.addEventListener('load', function() {
-    smoothScrollPolyfill();
-    initializeAccessibility();
-    initializeLazyLoading();
-});
