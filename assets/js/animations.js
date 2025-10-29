@@ -22,14 +22,14 @@ function addMovingStuff() {
 
     // Add falling code lines
     const codeLines = [
-        'const distributed = true;',
-        'async function deploy() {',
-        'kafka.connect();',
-        'ml.predict(data);',
-        'kubernetes.scale();',
-        'redis.cache(key);',
-        'docker.build();',
-        'aws.lambda();'
+        'langchain.chain();',
+        'const ai = new MultiAgent();',
+        'fastapi.route();',
+        'redis.cache();',
+        'mcp.server();',
+        'rag.search();',
+        'aws.ecs();',
+        'pinecone.query();'
     ];
 
     for (let i = 0; i < 8; i++) {
