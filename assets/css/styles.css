@@ -582,6 +582,14 @@ section {
     background: linear-gradient(135deg, var(--soft-blue), var(--light-orange));
 }
 
+.skill-box:nth-child(7) h3 {
+    color: var(--main-purple);
+}
+
+.skill-box:nth-child(7)::before {
+    background: var(--purple-flow);
+}
+
 .skill-list {
     display: flex;
     flex-wrap: wrap;
@@ -686,6 +694,21 @@ section {
     box-shadow: 0 8px 32px rgba(251, 191, 36, 0.3);
 }
 
+.project-box:nth-child(5):hover {
+    border-color: var(--success-green);
+    box-shadow: 0 8px 32px rgba(0, 255, 136, 0.3);
+}
+
+.project-box:nth-child(6):hover {
+    border-color: var(--main-purple);
+    box-shadow: var(--purple-glow);
+}
+
+.project-box:nth-child(7):hover {
+    border-color: var(--main-orange);
+    box-shadow: var(--orange-glow);
+}
+
 .project-icon {
     height: 200px;
     background: var(--darkest-bg);
@@ -778,6 +801,18 @@ section {
     color: var(--bright-yellow);
 }
 
+.project-box:nth-child(5) .project-link {
+    color: var(--success-green);
+}
+
+.project-box:nth-child(6) .project-link {
+    color: var(--main-purple);
+}
+
+.project-box:nth-child(7) .project-link {
+    color: var(--main-orange);
+}
+
 .project-link:hover {
     color: var(--light-orange);
     transform: translateX(5px);
@@ -830,6 +865,10 @@ section {
     left: -10px;
 }
 
+.journey-step:nth-child(odd)::after {
+    right: -10px;
+}
+
 .journey-step:nth-child(1)::after {
     background: var(--main-purple);
     box-shadow: 0 0 20px var(--main-purple);
@@ -848,6 +887,11 @@ section {
 .journey-step:nth-child(4)::after {
     background: var(--bright-yellow);
     box-shadow: 0 0 20px var(--bright-yellow);
+}
+
+.journey-step:nth-child(5)::after {
+    background: var(--success-green);
+    box-shadow: 0 0 20px var(--success-green);
 }
 
 .step-content {
@@ -882,6 +926,10 @@ section {
 
 .journey-step:nth-child(4) .step-date {
     color: var(--bright-yellow);
+}
+
+.journey-step:nth-child(5) .step-date {
+    color: var(--success-green);
 }
 
 .step-role {
@@ -1221,5 +1269,6 @@ footer::before {
     .projects-layout {
         grid-template-columns: 1fr;
     }
-}/ *   F o r c e   r e b u i l d   * /  
+}/ *   F o r c e   r e b u i l d   * / 
+ 
  

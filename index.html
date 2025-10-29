@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manan Patel - Software Engineer</title>
-    <meta name="description" content="Manan Patel - Software Engineer specializing in distributed systems, AI/ML, and scalable architectures. MS Computer Science student at Cal State East Bay.">
+    <meta name="description" content="Manan Patel - Software Engineer at Amotions Inc. specializing in AI/ML, FastAPI, multi-agent systems, and real-time emotion detection. Graduate from Cal State East Bay.">
     <meta name="keywords" content="Software Engineer, Distributed Systems, AI/ML, Full Stack Developer, Computer Science">
     <meta name="author" content="Manan Patel">
-    <meta property="og:title" content="Manan Patel - Software Engineer Portfolio">
-    <meta property="og:description" content="Software Engineer specializing in distributed systems and AI/ML technologies">
+    <meta property="og:title" content="Manan Patel - Software Engineer | AI/ML Expert">
+    <meta property="og:description" content="Software Engineer at Amotions Inc. specializing in AI/ML, FastAPI, multi-agent systems, and real-time emotion detection. Building cutting-edge AI applications in San Francisco.">
     <meta property="og:image" content="https://manan23-dev.github.io/mananpatel-portfolio/assets/images/manan-profile.jpg">
     <meta property="og:url" content="https://manan23-dev.github.io/mananpatel-portfolio">
     
@@ -17,6 +17,110 @@
     
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/animations.css">
+    <style>
+        /* Chatbot Styles */
+        .chat-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: var(--orange-flow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: var(--orange-glow);
+        }
+        
+        .chat-container {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            background: var(--dark-bg);
+            border: 2px solid var(--main-orange);
+            border-radius: 12px;
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+            box-shadow: var(--orange-glow);
+        }
+        
+        .chat-container.active {
+            display: flex;
+        }
+        
+        .chat-header {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-line);
+            background: var(--darker-bg);
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+        
+        .chat-message {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+        }
+        
+        .chat-message.user {
+            background: var(--orange-flow);
+            text-align: right;
+            margin-left: 20%;
+        }
+        
+        .chat-message.bot {
+            background: var(--darker-bg);
+            text-align: left;
+            margin-right: 20%;
+        }
+        
+        .chat-input-container {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid var(--border-line);
+        }
+        
+        .chat-input-container input {
+            flex: 1;
+            padding: 0.75rem;
+            background: var(--darker-bg);
+            border: 1px solid var(--border-line);
+            border-radius: 8px;
+            color: var(--white-text);
+        }
+        
+        .chat-input-container button {
+            margin-left: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--orange-flow);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--dark-bg);
+        }
+        
+        /* Tech Radar Styles */
+        .tech-radar-container {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .tech-radar-canvas {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
     <div class="moving-bg" id="backgroundStuff">
@@ -33,6 +137,7 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="lab.html">Lab</a></li>
             </ul>
             <div class="burger" id="menuToggle">
                 <i class="fas fa-bars"></i>
@@ -47,9 +152,9 @@
                     <h1>Manan Patel</h1>
                     <p class="job-title">Software Engineer</p>
                     <div class="code-text" id="typewriterText">
-                        const skills = ["Distributed Systems", "GenAI", "ML Engineering"];
+                        const skills = ["AI/ML", "FastAPI", "Multi-Agent Systems"];
                     </div>
-                    <p>Passionate about building <span class="special">scalable distributed systems</span> and leveraging cutting-edge <span class="special">AI/ML technologies</span> to solve complex problems. Currently pursuing MS in Computer Science at Cal State East Bay with hands-on experience in production systems.</p>
+                    <p>Passionate about building <span class="special">AI-powered systems</span> and leveraging cutting-edge <span class="special">LLMs and RAG technologies</span> to solve complex problems. Currently building real-time emotion detection systems at Amotions Inc., with expertise in production-grade AI applications.</p>
                     <div class="action-buttons">
                         <a href="#projects" class="button main-button">
                             <i class="fas fa-code"></i>
@@ -79,11 +184,11 @@
                     </div>
                     <div class="about-words">
                         <h3>Hi, I'm Manan!</h3>
-                        <p>I'm a software engineer with <span class="special">1+ year of professional experience</span> specializing in distributed systems, scalable architectures, and AI/ML technologies. Currently pursuing my Master's in Computer Science at <span class="special">California State University, East Bay</span>, where I'm diving deep into Operating Systems, Distributed Systems, Machine Learning, Computer Vision, and NLP.</p>
+                        <p>I'm a software engineer currently working at <span class="special">Amotions Inc.</span> in San Francisco, building AI systems for real-time emotion and speaker detection. With a Master's in Computer Science from <span class="special">California State University, East Bay</span> (GPA: 3.57) and a Bachelor's in Computer Engineering from Gujarat Technological University (GPA: 3.8), I specialize in distributed systems, scalable architectures, and cutting-edge AI/ML technologies.</p>
                         
-                        <p>My professional experience includes designing <span class="special">microservices with Spring Boot</span>, implementing <span class="special">CI/CD pipelines</span>, and building <span class="special">event-driven architectures with Kafka</span>. During my time at Paul Mason Consulting, I successfully optimized API response times by 20%, reduced deployment time by 50%, and improved system efficiency by 30% through strategic architectural decisions.</p>
+                        <p>Currently, I'm developing an MCP server-based multi-agent framework where detection, reasoning, and feedback agents collaborate for context-aware responses. My work involves creating FastAPI microservices with Redis and AWS ECS, improving inter-agent latency by 35%. Previously at Paul Mason Consulting, I implemented Python inference services that made checkout processes 45% faster, designed fraud detection systems with Isolation Forest, and delivered ML microservices that boosted cart conversions by 25%.</p>
                         
-                        <p>I'm passionate about creating efficient, scalable solutions that can handle millions of requests while maintaining high performance. As a graduate student actively seeking opportunities, I'm exploring the latest developments in <span class="special">GenAI</span>, contributing to open-source projects, and working on personal projects that push the boundaries of what's possible with modern technology.</p>
+                        <p>I'm passionate about leveraging <span class="special">LangChain</span>, <span class="special">OpenAI</span>, and <span class="special">multi-agent systems</span> to solve complex problems. My expertise spans from building scalable RAG systems to designing FastAPI microservices with Redis caching, all while ensuring high performance and reliability in production environments.</p>
                         
                         <div class="social-row">
                             <a href="https://github.com/Manan23-dev" class="social-icon" target="_blank" rel="noopener">
@@ -109,71 +214,100 @@
                         <h3><i class="fas fa-code"></i> Programming Languages</h3>
                         <div class="skill-list">
                             <span class="skill-item"><span>Python</span></span>
-                            <span class="skill-item"><span>C++</span></span>
                             <span class="skill-item"><span>Java</span></span>
-                            <span class="skill-item"><span>TypeScript</span></span>
                             <span class="skill-item"><span>Go</span></span>
-                            <span class="skill-item"><span>CUDA</span></span>
+                            <span class="skill-item"><span>TypeScript</span></span>
+                            <span class="skill-item"><span>C++</span></span>
+                            <span class="skill-item"><span>C#</span></span>
                         </div>
                     </div>
                     <div class="skill-box fade-in">
-                        <h3><i class="fas fa-database"></i> Databases & Storage</h3>
+                        <h3><i class="fas fa-database"></i> Databases</h3>
                         <div class="skill-list">
-                            <span class="skill-item"><span>MySQL</span></span>
-                            <span class="skill-item"><span>MongoDB</span></span>
                             <span class="skill-item"><span>PostgreSQL</span></span>
+                            <span class="skill-item"><span>MongoDB</span></span>
                             <span class="skill-item"><span>Redis</span></span>
-                            <span class="skill-item"><span>Neo4j</span></span>
+                            <span class="skill-item"><span>Cassandra</span></span>
+                            <span class="skill-item"><span>Firestore</span></span>
+                            <span class="skill-item"><span>AstraDB</span></span>
                         </div>
                     </div>
                     <div class="skill-box fade-in">
-                        <h3><i class="fas fa-server"></i> Backend & Infrastructure</h3>
+                        <h3><i class="fas fa-server"></i> Backend Development</h3>
                         <div class="skill-list">
-                            <span class="skill-item"><span>Node.js</span></span>
+                            <span class="skill-item"><span>FastAPI</span></span>
                             <span class="skill-item"><span>Spring Boot</span></span>
+                            <span class="skill-item"><span>Node.js</span></span>
                             <span class="skill-item"><span>Flask</span></span>
                             <span class="skill-item"><span>REST APIs</span></span>
                             <span class="skill-item"><span>GraphQL</span></span>
-                            <span class="skill-item"><span>Kafka</span></span>
-                            <span class="skill-item"><span>RabbitMQ</span></span>
                             <span class="skill-item"><span>gRPC</span></span>
+                            <span class="skill-item"><span>NextAuth</span></span>
                         </div>
                     </div>
                     <div class="skill-box fade-in">
-                        <h3><i class="fas fa-cloud"></i> DevOps & Cloud</h3>
+                        <h3><i class="fas fa-desktop"></i> Frontend Development</h3>
                         <div class="skill-list">
-                            <span class="skill-item"><span>Kubernetes</span></span>
+                            <span class="skill-item"><span>React.js</span></span>
+                            <span class="skill-item"><span>Next.js</span></span>
+                            <span class="skill-item"><span>TailwindCSS</span></span>
+                            <span class="skill-item"><span>HTML</span></span>
+                            <span class="skill-item"><span>CSS</span></span>
+                        </div>
+                    </div>
+                    <div class="skill-box fade-in">
+                        <h3><i class="fas fa-brain"></i> AI / ML</h3>
+                        <div class="skill-list">
+                            <span class="skill-item"><span>LangChain</span></span>
+                            <span class="skill-item"><span>MCP</span></span>
+                            <span class="skill-item"><span>Transformers</span></span>
+                            <span class="skill-item"><span>PyTorch</span></span>
+                            <span class="skill-item"><span>TensorFlow</span></span>
+                            <span class="skill-item"><span>Hugging Face</span></span>
+                            <span class="skill-item"><span>MLflow</span></span>
+                            <span class="skill-item"><span>RAG Systems</span></span>
+                        </div>
+                    </div>
+                    <div class="skill-box fade-in">
+                        <h3><i class="fas fa-cloud"></i> Infrastructure & DevOps</h3>
+                        <div class="skill-list">
                             <span class="skill-item"><span>Docker</span></span>
+                            <span class="skill-item"><span>Kubernetes</span></span>
                             <span class="skill-item"><span>Jenkins</span></span>
                             <span class="skill-item"><span>Prometheus</span></span>
                             <span class="skill-item"><span>Grafana</span></span>
-                            <span class="skill-item"><span>AWS</span></span>
-                            <span class="skill-item"><span>Linux</span></span>
+                            <span class="skill-item"><span>Kafka</span></span>
+                            <span class="skill-item"><span>Terraform</span></span>
+                            <span class="skill-item"><span>CI/CD</span></span>
+                            <span class="skill-item"><span>Observability</span></span>
                         </div>
                     </div>
                     <div class="skill-box fade-in">
-                        <h3><i class="fas fa-brain"></i> AI/ML & Frontend</h3>
+                        <h3><i class="fas fa-aws"></i> Cloud Platforms</h3>
                         <div class="skill-list">
-                            <span class="skill-item"><span>PyTorch</span></span>
-                            <span class="skill-item"><span>TensorFlow</span></span>
-                            <span class="skill-item"><span>Transformers</span></span>
-                            <span class="skill-item"><span>LangChain</span></span>
-                            <span class="skill-item"><span>MLFlow</span></span>
-                            <span class="skill-item"><span>Hugging Face</span></span>
-                            <span class="skill-item"><span>React.js</span></span>
-                        </div>
-                    </div>
-                    <div class="skill-box fade-in">
-                        <h3><i class="fas fa-aws"></i> AWS Services</h3>
-                        <div class="skill-list">
-                            <span class="skill-item"><span>ECS</span></span>
-                            <span class="skill-item"><span>S3</span></span>
+                            <span class="skill-item"><span>AWS ECS</span></span>
                             <span class="skill-item"><span>Lambda</span></span>
                             <span class="skill-item"><span>SageMaker</span></span>
                             <span class="skill-item"><span>Bedrock</span></span>
+                            <span class="skill-item"><span>S3</span></span>
+                            <span class="skill-item"><span>GCP</span></span>
+                            <span class="skill-item"><span>Render</span></span>
+                            <span class="skill-item"><span>DigitalOcean</span></span>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section id="tech-radar" class="about-me">
+            <div class="wrapper">
+                <h2 class="big-title fade-in">Tech Radar</h2>
+                <div class="fade-in tech-radar-container" id="techRadar">
+                    <!-- Tech Radar visualization will be rendered here -->
+                </div>
+                <p style="text-align: center; color: var(--gray-text); max-width: 600px; margin: 0 auto;">
+                    Interactive visualization of technical skills proficiency. Each point represents a technology, positioned by skill level and category.
+                </p>
             </div>
         </section>
 
@@ -183,7 +317,85 @@
                 <div class="projects-layout">
                     <div class="project-box fade-in">
                         <div class="project-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-name">FlowAgent - Multi-Agent Productivity Platform</h3>
+                            <p class="project-about">Built FlowAgent, a multi-agent productivity system that automates scheduling and follow-ups using LangChain, MCP, and GPT-4. Created Observer, Planner, and Executor agents collaborating via an MCP server for adaptive workflow automation. Developed FastAPI microservices with Redis memory and a React dashboard, deployed on Render.</p>
+                            <div class="tech-used">
+                                <span class="tech-label">LangChain</span>
+                                <span class="tech-label">MCP</span>
+                                <span class="tech-label">FastAPI</span>
+                                <span class="tech-label">Redis</span>
+                                <span class="tech-label">GPT-4</span>
+                                <span class="tech-label">React</span>
+                                <span class="tech-label">Render</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/Manan23-dev/Multi-Agent-Productivity-Platform" class="project-link" target="_blank">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                                <a href="https://flowagent.vercel.app" class="project-link" target="_blank">
+                                    <i class="fas fa-play"></i> Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-box fade-in">
+                        <div class="project-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-name">Document Search Assistant using RAG</h3>
+                            <p class="project-about">Built a scalable RAG-based system with LangChain and Hugging Face, enabling automated document retrieval and intelligent question-answering for large collections of text. Implemented HNSWlib vector search to manage embeddings and perform fast similarity lookups, improving query relevance and response time.</p>
+                            <div class="tech-used">
+                                <span class="tech-label">Python</span>
+                                <span class="tech-label">LangChain</span>
+                                <span class="tech-label">Hugging Face</span>
+                                <span class="tech-label">HNSWlib</span>
+                                <span class="tech-label">RAG</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/Manan23-dev/vector-similarity-search-for-Document-Retrieval" class="project-link" target="_blank">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                                <a href="#" class="project-link" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Documentation
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-box fade-in">
+                        <div class="project-icon">
                             <i class="fas fa-home"></i>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-name">Rental Management Service</h3>
+                            <p class="project-about">Designed a responsive frontend with Next.js (ReactJS), improving page rendering time by 50ms. Built backend APIs in Python FastAPI with MongoDB, enabling location-based search, calendar, and group-size filters to enhance user experience. Implemented authentication and hosting workflows enabling users to manage property listings.</p>
+                            <div class="tech-used">
+                                <span class="tech-label">React.js</span>
+                                <span class="tech-label">Next.js</span>
+                                <span class="tech-label">TailwindCSS</span>
+                                <span class="tech-label">FastAPI</span>
+                                <span class="tech-label">MongoDB</span>
+                                <span class="tech-label">NextAuth</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/Manan23-dev/lodging-hub" class="project-link" target="_blank">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                                <a href="#" class="project-link" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-box fade-in">
+                        <div class="project-icon">
+                            <i class="fas fa-key"></i>
                         </div>
                         <div class="project-info">
                             <h3 class="project-name">LodgingHub: Full-Stack Platform</h3>
@@ -195,7 +407,6 @@
                                 <span class="tech-label">MongoDB</span>
                                 <span class="tech-label">REST APIs</span>
                                 <span class="tech-label">PayPal</span>
-                                <span class="tech-label">Venmo</span>
                             </div>
                             <div class="project-links">
                                 <a href="https://github.com/Manan23-dev" class="project-link" target="_blank">
@@ -298,12 +509,27 @@
                 <div class="time-line">
                     <div class="journey-step fade-in">
                         <div class="step-content">
+                            <div class="step-date">August 2025 - Present</div>
+                            <h3 class="step-role">Software Engineer</h3>
+                            <p class="step-place">Amotions Inc. - San Francisco, CA</p>
+                            <div class="step-details">
+                                <ul>
+                                    <li>Building an AI system for real-time emotion and speaker detection to enhance LLM-based meeting insights using OpenAI, Gemini, and Pinecone</li>
+                                    <li>Designing an MCP server-based multi-agent framework where detection, reasoning, and feedback agents collaborate for context-aware responses</li>
+                                    <li>Creating FastAPI microservices with Redis and AWS ECS, improving inter-agent latency by 35% and ensuring scalable performance</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="journey-step fade-in">
+                        <div class="step-content">
                             <div class="step-date">August 2023 - May 2025</div>
                             <h3 class="step-role">Master of Science in Computer Science</h3>
                             <p class="step-place">California State University, East Bay - Hayward, CA</p>
+                            <p class="step-place">GPA: 3.57</p>
                             <div class="step-details">
-                                <p><strong>Courses:</strong> Operating Systems, Distributed Systems, Machine Learning, Computer Vision, Natural Language Processing</p>
-                                <p>Focus on advanced distributed systems, AI/ML algorithms, and scalable system design.</p>
+                                <p>Coursework in Operating Systems, Distributed Systems, Machine Learning, Computer Vision, and Natural Language Processing. Focus on advanced distributed systems, AI/ML algorithms, and scalable system design.</p>
                             </div>
                         </div>
                     </div>
@@ -313,12 +539,13 @@
                             <div class="step-date">October 2022 - July 2023</div>
                             <h3 class="step-role">Software Engineer</h3>
                             <p class="step-place">Paul Mason Consulting - Vadodara, India</p>
+                            <p class="step-place">Clients: Crew Clothing, Morrisons</p>
                             <div class="step-details">
                                 <ul>
-                                    <li>Designed 3 Spring Boot microservices with Redis caching and JPA, optimizing API response times by 20% and deployed on AWS ECS across 5 client environments</li>
-                                    <li>Built Jenkins CI/CD pipelines with automated testing, reducing deployment time by 50% and enabling zero-downtime blue-green deployments</li>
-                                    <li>Implemented Prometheus/Grafana monitoring with 10+ dashboards, reducing system downtime by 25% through proactive alerting</li>
-                                    <li>Migrated monolithic systems to Kafka event-driven architecture, processing 50K+ daily transactions and improving data sync efficiency by 30%</li>
+                                    <li>Implemented Python inference services that replaced components of a legacy ML pipeline, allowing models to run in parallel and making the checkout process 45% faster for users</li>
+                                    <li>Designed fraud detection diagnostics leveraging Isolation Forest and anomaly detection, with Prometheus and Grafana dashboards giving client fraud/ops teams real-time alerts and reducing fraudulent transactions</li>
+                                    <li>Delivered a "Frequently Bought Together" recommendation microservice integrated into a monorepo ecosystem, applying ML-driven personalization that boosted cart conversions by 25%</li>
+                                    <li>Worked with QA and DevOps to integrate ML microservices into Jenkins CI/CD pipelines using automated tests and Dockerized builds, improving deployment reliability</li>
                                 </ul>
                             </div>
                         </div>
@@ -331,9 +558,9 @@
                             <p class="step-place">Paul Mason Consulting - Vadodara, India</p>
                             <div class="step-details">
                                 <ul>
-                                    <li>Built and deployed Flask ML application using Docker containers; implemented automated model updates using Python scripts and cron jobs, reducing manual deployment effort by 50%</li>
-                                    <li>Contributed to recommendation system development, implementing data cleaning pipelines in Python and assisting with performance testing</li>
-                                    <li>Created AWS infrastructure scripts for VPC setup and IAM roles, standardizing team's deployment processes</li>
+                                    <li>Built a FastAPI service to process real-time user events and persist results in PostgreSQL, exposing REST APIs that enabled other services in the retailer's checkout pipeline to access customer activity data</li>
+                                    <li>Containerized and deployed the service with Docker on AWS EKS, making it scalable and easier for the platform team to manage in production</li>
+                                    <li>Integrated OpenTelemetry monitoring to capture latency and error metrics, giving engineering teams visibility into bottlenecks and helping ensure reliable customer checkout flows</li>
                                 </ul>
                             </div>
                         </div>
@@ -344,6 +571,7 @@
                             <div class="step-date">July 2018 - May 2022</div>
                             <h3 class="step-role">Bachelor of Engineering in Computer Engineering</h3>
                             <p class="step-place">Gujarat Technological University - Ahmedabad, India</p>
+                            <p class="step-place">GPA: 3.8</p>
                             <div class="step-details">
                                 <p>Strong foundation in computer science fundamentals, data structures, algorithms, and software engineering principles. Graduated with comprehensive knowledge in distributed systems and scalable architectures.</p>
                             </div>
@@ -420,7 +648,27 @@
         <i class="fas fa-chevron-up"></i>
     </button>
 
+    <!-- Chatbot -->
+    <div class="chat-container" id="chatContainer">
+        <div class="chat-header">
+            <h3>💬 Ask Me Anything</h3>
+            <p>Ask about my projects, skills, or experience!</p>
+        </div>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input-container">
+            <input type="text" id="chatInput" placeholder="Type your question...">
+            <button id="chatSend"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+    
+    <button class="chat-toggle" id="chatToggle">
+        <i class="fas fa-comments"></i>
+    </button>
+
     <script src="assets/js/animations.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/parallax.js"></script>
+    <script src="assets/js/chatbot.js"></script>
+    <script src="assets/js/tech-radar.js"></script>
 </body>
 </html>

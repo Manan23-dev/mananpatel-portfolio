@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab - Manan Patel | Experimental Demos</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <style>
+        .lab-header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--darker-bg);
+        }
+        
+        .lab-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: var(--innovate-mix);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .lab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+        
+        .lab-card {
+            background: var(--darker-bg);
+            border: 1px solid var(--border-line);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .lab-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--orange-glow);
+        }
+        
+        .lab-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--main-orange);
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin: 2rem;
+            padding: 1rem 2rem;
+            background: var(--orange-flow);
+            color: var(--dark-bg);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="moving-bg" id="backgroundStuff">
+        <div class="grid-pattern"></div>
+    </div>
+
+    <header>
+        <nav class="wrapper">
+            <a href="index.html" class="brand">manan.dev</a>
+            <div class="back-button">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="lab-header">
+            <div class="wrapper">
+                <h1><i class="fas fa-flask"></i> Experimental Lab</h1>
+                <p>Cutting-edge demos and prototypes</p>
+            </div>
+        </section>
+
+        <section class="work-showcase">
+            <div class="wrapper">
+                <h2 class="big-title fade-in">Featured Experiments</h2>
+                <div class="lab-grid">
+                    <div class="lab-card fade-in">
+                        <div class="lab-card-icon">
+                            <i class="fas fa-radar"></i>
+                        </div>
+                        <h3>Tech Radar</h3>
+                        <p>Interactive visualization of technical skills and proficiency levels.</p>
+                        <div id="techRadar" style="margin-top: 2rem;"></div>
+                    </div>
+
+                    <div class="lab-card fade-in">
+                        <div class="lab-card-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>Multi-Agent Demo</h3>
+                        <p>Prototype for multi-agent coordination using LangChain and MCP.</p>
+                        <a href="https://flowagent.vercel.app" class="button main-button" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> View Demo
+                        </a>
+                    </div>
+
+                    <div class="lab-card fade-in">
+                        <div class="lab-card-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>RAG Search Demo</h3>
+                        <p>Vector similarity search with LangChain and HNSWlib for document retrieval.</p>
+                        <a href="https://github.com/Manan23-dev/vector-similarity-search-for-Document-Retrieval" class="button alt-button" target="_blank">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrapper">
+            <p>&copy; 2025 Manan Patel. Experimental Lab.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/tech-radar.js"></script>
+</body>
+</html>
+

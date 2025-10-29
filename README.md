@@ -1,10 +1,17 @@
 # Manan Patel Portfolio
 
-Modern portfolio website showcasing software engineering expertise in distributed systems, AI/ML, and scalable architectures.
+Modern portfolio website showcasing software engineering expertise in AI/ML, multi-agent systems, FastAPI, and real-time emotion detection. Currently working at Amotions Inc. in San Francisco.
 
 ## Live Demo
 
 [View Portfolio](https://manan23-dev.github.io/mananpatel-portfolio)
+
+## Current Position
+
+**Software Engineer** at Amotions Inc. (August 2025 - Present)
+- Building AI systems for real-time emotion and speaker detection
+- Designing MCP server-based multi-agent frameworks
+- Creating FastAPI microservices with Redis and AWS ECS
 
 ## Features
 
@@ -112,13 +119,22 @@ Modify `assets/css/animations.css` and `assets/js/animations.js` for custom effe
 - Lazy loading support
 - FPS monitoring with animation reduction
 
+## Education
+
+- **Master of Science in Computer Science** (GPA: 3.57)
+  - California State University, East Bay (2023 - 2025)
+  - Focus: Operating Systems, Distributed Systems, ML, Computer Vision, NLP
+
+- **Bachelor of Engineering in Computer Engineering** (GPA: 3.8)
+  - Gujarat Technological University (2018 - 2022)
+
 ## Contact
 
 **Manan Patel**
 - Email: manan2301patel@gmail.com
 - LinkedIn: [linkedin.com/in/mananpatel23](https://linkedin.com/in/mananpatel23)
 - GitHub: [github.com/Manan23-dev](https://github.com/Manan23-dev)
-- Phone: (510) 998-7785
+- Location: San Francisco Bay Area, USA
 
 ## License
 
