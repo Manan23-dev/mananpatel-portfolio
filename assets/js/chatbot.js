@@ -6,14 +6,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const knowledgeBase = {
         'project': {
             'redis': 'I used Redis in FlowAgent Multi-Agent Productivity Platform for caching and memory management in the multi-agent system.',
-            'fastapi': 'I built several projects with FastAPI including the Document Search Assistant using RAG, Rental Management Service, and FlowAgent.',
+            'fastapi': 'I built several projects with FastAPI including the Document Search Assistant using RAG, Rental Management Service, FlowAgent, and Flask ML Services.',
             'langchain': 'I used LangChain in FlowAgent for multi-agent coordination and in the Document Search Assistant for RAG implementation.',
-            'mongodb': 'MongoDB is used in Rental Management Service for storing property listings and user data.',
+            'mongodb': 'MongoDB is used in Rental Management Service and LodgingHub for storing property listings and user data.',
             'react': 'I used React.js in FlowAgent for the frontend dashboard, and in LodgingHub for the full-stack platform.',
             'openai': 'I integrated OpenAI in FlowAgent for GPT-4 powered agents and in my current work at Amotions Inc. for LLM-based meeting insights.',
             'aws': 'I deployed services on AWS ECS, S3, Lambda for scalable cloud infrastructure.',
             'kubernetes': 'I deployed Vector Similarity Search Engine using Kubernetes for horizontal scalability.',
-            'docker': 'I containerized applications with Docker including the FastAPI services and ML pipelines.'
+            'docker': 'I containerized applications with Docker including the FastAPI services, Flask ML Services, and ML pipelines.',
+            'flask': 'I built Flask ML Services with Docker, MLflow, and automated CI/CD pipeline for production-ready ML microservices.',
+            'stock': 'I built a Stock Price Prediction system using LSTMs and dynamic RNNs for time series forecasting.',
+            'crop': 'I developed a Crop Disease Detection system using computer vision and deep learning to help farmers identify plant diseases.',
+            'anime': 'I created an Anime GPT-2 Storyteller that generates creative stories using fine-tuned GPT-2 models.',
+            'sago': 'I built the Sago Founder Re-engagement Agent that monitors signals and drafts personalized outreach emails.',
+            'aegis': 'I developed AegisChain, an AI agent system for supply chain code security as part of a Cloud Run Hackathon project.',
+            'smartsplit': 'I built SmartSplit, a Flutter-based expense tracking app with Firebase, OCR receipt scanning, and real-time sync.'
         },
         'skill': {
             'python': 'Python is my primary language with 5+ years experience, used extensively in AI/ML projects.',

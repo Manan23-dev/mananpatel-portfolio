@@ -709,6 +709,36 @@ section {
     box-shadow: var(--orange-glow);
 }
 
+.project-box:nth-child(8):hover {
+    border-color: var(--main-blue);
+    box-shadow: var(--blue-glow);
+}
+
+.project-box:nth-child(9):hover {
+    border-color: var(--success-green);
+    box-shadow: 0 8px 32px rgba(0, 255, 136, 0.3);
+}
+
+.project-box:nth-child(10):hover {
+    border-color: var(--main-purple);
+    box-shadow: var(--purple-glow);
+}
+
+.project-box:nth-child(11):hover {
+    border-color: var(--bright-yellow);
+    box-shadow: 0 8px 32px rgba(251, 191, 36, 0.3);
+}
+
+.project-box:nth-child(12):hover {
+    border-color: var(--soft-blue);
+    box-shadow: var(--blue-glow);
+}
+
+.project-box:nth-child(13):hover {
+    border-color: var(--main-orange);
+    box-shadow: var(--orange-glow);
+}
+
 .project-icon {
     height: 200px;
     background: var(--darkest-bg);
@@ -813,6 +843,30 @@ section {
     color: var(--main-orange);
 }
 
+.project-box:nth-child(8) .project-link {
+    color: var(--main-blue);
+}
+
+.project-box:nth-child(9) .project-link {
+    color: var(--success-green);
+}
+
+.project-box:nth-child(10) .project-link {
+    color: var(--main-purple);
+}
+
+.project-box:nth-child(11) .project-link {
+    color: var(--bright-yellow);
+}
+
+.project-box:nth-child(12) .project-link {
+    color: var(--soft-blue);
+}
+
+.project-box:nth-child(13) .project-link {
+    color: var(--main-orange);
+}
+
 .project-link:hover {
     color: var(--light-orange);
     transform: translateX(5px);
@@ -894,6 +948,11 @@ section {
     box-shadow: 0 0 20px var(--success-green);
 }
 
+.journey-step:nth-child(6)::after {
+    background: var(--main-blue);
+    box-shadow: 0 0 20px var(--main-blue);
+}
+
 .step-content {
     background: var(--darker-bg);
     padding: 20px;
@@ -930,6 +989,10 @@ section {
 
 .journey-step:nth-child(5) .step-date {
     color: var(--success-green);
+}
+
+.journey-step:nth-child(6) .step-date {
+    color: var(--main-blue);
 }
 
 .step-role {
@@ -1268,6 +1331,18 @@ footer::before {
 
     .projects-layout {
         grid-template-columns: 1fr;
+    }
+    
+    .ml-metrics-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .ml-pipeline > div:first-of-type {
+        flex-direction: column;
+    }
+    
+    .ml-pipeline > div:first-of-type > div:not(:last-child) {
+        margin-bottom: 1rem;
     }
 }/ *   F o r c e   r e b u i l d   * / 
  

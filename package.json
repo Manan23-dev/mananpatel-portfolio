@@ -1,0 +1,17 @@
+{
+  "name": "mananpatel-portfolio",
+  "version": "1.0.0",
+  "description": "Manan Patel's Portfolio Website",
+  "scripts": {
+    "dev": "npx http-server -p 8000 -o",
+    "start": "npx http-server -p 8000 -o",
+    "serve": "python3 -m http.server 8000"
+  },
+  "keywords": [
+    "portfolio",
+    "website",
+    "developer"
+  ],
+  "author": "Manan Patel",
+  "license": "MIT"
+}
