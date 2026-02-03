@@ -120,6 +120,90 @@
             max-width: 100%;
             height: auto;
         }
+        
+        /* Project Filter Styles */
+        .project-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--darker-bg);
+            border: 2px solid var(--border-line);
+            border-radius: 8px;
+            color: var(--gray-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: inherit;
+        }
+        
+        .filter-btn:hover {
+            border-color: var(--main-orange);
+            color: var(--main-orange);
+            transform: translateY(-2px);
+        }
+        
+        .filter-btn.active {
+            background: var(--orange-flow);
+            border-color: var(--main-orange);
+            color: var(--dark-bg);
+            box-shadow: var(--orange-glow);
+        }
+        
+        .project-box.hidden {
+            display: none !important;
+        }
+        
+        .project-box.visible {
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Project Statistics */
+        .project-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--innovate-mix);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+        }
+        
+        .stat-label {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -215,7 +299,10 @@
                         <h3><i class="fas fa-code"></i> Programming Languages</h3>
                         <div class="skill-list">
                             <span class="skill-item"><span>Python</span></span>
+                            <span class="skill-item"><span>SQL</span></span>
                             <span class="skill-item"><span>Java</span></span>
+                            <span class="skill-item"><span>PySpark</span></span>
+                            <span class="skill-item"><span>Scala</span></span>
                             <span class="skill-item"><span>Go</span></span>
                             <span class="skill-item"><span>TypeScript</span></span>
                             <span class="skill-item"><span>C++</span></span>
@@ -274,6 +361,24 @@
                             <span class="skill-item"><span>Agentic Systems</span></span>
                             <span class="skill-item"><span>LLM Fine-tuning</span></span>
                             <span class="skill-item"><span>Vector Databases</span></span>
+                            <span class="skill-item"><span>Scikit-learn</span></span>
+                        </div>
+                    </div>
+                    <div class="skill-box fade-in">
+                        <h3><i class="fas fa-chart-line"></i> Decision Systems & Analytics</h3>
+                        <div class="skill-list">
+                            <span class="skill-item"><span>Utility-Based Optimization</span></span>
+                            <span class="skill-item"><span>Constraint-Based Optimization</span></span>
+                            <span class="skill-item"><span>Ranking Models</span></span>
+                            <span class="skill-item"><span>Decision Policies</span></span>
+                            <span class="skill-item"><span>Experiment Design</span></span>
+                            <span class="skill-item"><span>Causal Inference</span></span>
+                            <span class="skill-item"><span>Counterfactual Analysis</span></span>
+                            <span class="skill-item"><span>Econometrics</span></span>
+                            <span class="skill-item"><span>Feature Engineering</span></span>
+                            <span class="skill-item"><span>Statistical Analysis</span></span>
+                            <span class="skill-item"><span>Long-Term Effect Modeling</span></span>
+                            <span class="skill-item"><span>A/B Testing</span></span>
                         </div>
                     </div>
                     <div class="skill-box fade-in">
@@ -455,13 +560,64 @@
                         <span class="special" style="color: var(--success-green);">RAG implementations</span>.
                     </p>
                 </div>
+                
+                <!-- Project Statistics -->
+                <div class="project-stats fade-in">
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalProjects">13</span>
+                        <span class="stat-label">Total Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">8</span>
+                        <span class="stat-label">AI/ML Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Gen AI Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">500K+</span>
+                        <span class="stat-label">Daily Events Handled</span>
+                    </div>
+                </div>
+                
+                <!-- Project Search & Filter -->
+                <div style="max-width: 600px; margin: 0 auto 2rem;">
+                    <div style="position: relative; margin-bottom: 1.5rem;">
+                        <input type="text" id="projectSearch" placeholder="Search projects by name, tech, or description..." 
+                               style="width: 100%; padding: 1rem 1rem 1rem 3rem; background: var(--darker-bg); border: 2px solid var(--border-line); border-radius: 8px; color: var(--white-text); font-size: 1rem;">
+                        <i class="fas fa-search" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gray-text);"></i>
+                    </div>
+                    
+                    <div class="project-filters fade-in">
+                        <button class="filter-btn active" data-filter="all">
+                            <i class="fas fa-th"></i> All
+                        </button>
+                        <button class="filter-btn" data-filter="ai-ml">
+                            <i class="fas fa-brain"></i> AI/ML
+                        </button>
+                        <button class="filter-btn" data-filter="gen-ai">
+                            <i class="fas fa-magic"></i> Gen AI
+                        </button>
+                        <button class="filter-btn" data-filter="fullstack">
+                            <i class="fas fa-code"></i> Full-Stack
+                        </button>
+                        <button class="filter-btn" data-filter="ml-ops">
+                            <i class="fas fa-cogs"></i> ML Ops
+                        </button>
+                    </div>
+                </div>
+                
                 <div class="projects-layout">
-                    <div class="project-box fade-in">
+                    <div class="project-box fade-in" data-category="gen-ai ai-ml">
                         <div class="project-icon">
                             <i class="fas fa-robot"></i>
                         </div>
                         <div class="project-info">
-                            <h3 class="project-name">FlowAgent - Multi-Agent Productivity Platform</h3>
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
+                                <h3 class="project-name" style="margin: 0;">FlowAgent - Multi-Agent Productivity Platform</h3>
+                                <span style="background: var(--success-green); color: var(--dark-bg); padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Production</span>
+                            </div>
                             <p class="project-about">Built FlowAgent, a multi-agent productivity system that automates scheduling and follow-ups using LangChain, MCP, and GPT-4. Created Observer, Planner, and Executor agents collaborating via an MCP server for adaptive workflow automation. Developed FastAPI microservices with Redis memory and a React dashboard, deployed on Render.</p>
                             <div class="tech-used">
                                 <span class="tech-label">LangChain</span>
@@ -483,19 +639,23 @@
                         </div>
                     </div>
 
-                    <div class="project-box fade-in">
+                    <div class="project-box fade-in" data-category="gen-ai ai-ml">
                         <div class="project-icon">
                             <i class="fas fa-search"></i>
                         </div>
                         <div class="project-info">
-                            <h3 class="project-name">Document Search Assistant using RAG</h3>
-                            <p class="project-about">Built a scalable RAG-based system with LangChain and Hugging Face, enabling automated document retrieval and intelligent question-answering for large collections of text. Implemented HNSWlib vector search to manage embeddings and perform fast similarity lookups, improving query relevance and response time.</p>
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
+                                <h3 class="project-name" style="margin: 0;">Document Search Assistant using RAG</h3>
+                                <span style="background: var(--main-blue); color: var(--white-text); padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Large-Scale</span>
+                            </div>
+                            <p class="project-about">Built a large-scale retrieval system optimized for relevance, latency, and cost efficiency. Implemented HNSWlib vector search with LangChain and Hugging Face for automated document retrieval and intelligent question-answering. Evaluated ranking quality and downstream decision impact using retrieval and response-level metrics, achieving sub-100ms query times on 50,000+ documents.</p>
                             <div class="tech-used">
                                 <span class="tech-label">Python</span>
                                 <span class="tech-label">LangChain</span>
                                 <span class="tech-label">Hugging Face</span>
                                 <span class="tech-label">HNSWlib</span>
                                 <span class="tech-label">RAG</span>
+                                <span class="tech-label">Vector Search</span>
                             </div>
                             <div class="project-links">
                                 <a href="https://github.com/Manan23-dev/vector-similarity-search-for-Document-Retrieval" class="project-link" target="_blank">
@@ -508,7 +668,7 @@
                         </div>
                     </div>
 
-                    <div class="project-box fade-in">
+                    <div class="project-box fade-in" data-category="fullstack">
                         <div class="project-icon">
                             <i class="fas fa-home"></i>
                         </div>
@@ -534,7 +694,7 @@
                         </div>
                     </div>
 
-                    <div class="project-box fade-in">
+                    <div class="project-box fade-in" data-category="fullstack">
                         <div class="project-icon">
                             <i class="fas fa-key"></i>
                         </div>
@@ -560,7 +720,7 @@
                         </div>
                     </div>
 
-                    <div class="project-box fade-in">
+                    <div class="project-box fade-in" data-category="ai-ml ml-ops">
                         <div class="project-icon">
                             <i class="fas fa-search"></i>
                         </div>
@@ -588,7 +748,7 @@
                         </div>
                     </div>
 
-                    <div class="project-box fade-in">
+                    <div class="project-box fade-in" data-category="ai-ml">
                         <div class="project-icon">
                             <i class="fas fa-mobile-alt"></i>
                         </div>
@@ -615,7 +775,7 @@
                         </div>
                     </div>
 
-                    <div class="project-box fade-in">
+                    <div class="project-box fade-in" data-category="fullstack">
                         <div class="project-icon">
                             <i class="fas fa-receipt"></i>
                         </div>
@@ -641,18 +801,23 @@
                         </div>
                     </div>
 
-                    <div class="project-box fade-in">
+                    <div class="project-box fade-in" data-category="gen-ai ai-ml">
                         <div class="project-icon">
                             <i class="fas fa-envelope"></i>
                         </div>
                         <div class="project-info">
-                            <h3 class="project-name">Sago Founder Re-engagement Agent</h3>
-                            <p class="project-about">Built an AI agent that monitors signals and drafts personalized outreach emails for founder re-engagement. Uses intelligent monitoring and natural language generation to create context-aware communication.</p>
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
+                                <h3 class="project-name" style="margin: 0;">Founder Re-Engagement Decision System</h3>
+                                <span style="background: var(--main-purple); color: var(--white-text); padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Decision Intelligence</span>
+                            </div>
+                            <p class="project-about">Built a decision intelligence and ranking system that converts unstructured communications into structured economic signals (intent, recency, expected response probability). Modeled timing, frequency, and prioritization trade-offs to maximize long-term engagement while minimizing outreach fatigue. Enabled automated experimentation by logging decisions and outcomes to support counterfactual and causal analysis.</p>
                             <div class="tech-used">
                                 <span class="tech-label">Python</span>
-                                <span class="tech-label">AI Agents</span>
-                                <span class="tech-label">NLP</span>
-                                <span class="tech-label">Email Automation</span>
+                                <span class="tech-label">LLMs</span>
+                                <span class="tech-label">Gmail APIs</span>
+                                <span class="tech-label">Decision Intelligence</span>
+                                <span class="tech-label">Causal Analysis</span>
+                                <span class="tech-label">Agentic AI</span>
                             </div>
                             <div class="project-links">
                                 <a href="https://github.com/Manan23-dev/sago-founder-reengagement-agent" class="project-link" target="_blank">
@@ -662,7 +827,7 @@
                         </div>
                     </div>
 
-                    <div class="project-box fade-in">
+                    <div class="project-box fade-in" data-category="ai-ml gen-ai">
                         <div class="project-icon">
                             <i class="fas fa-shield-alt"></i>
                         </div>
@@ -684,7 +849,7 @@
                         </div>
                     </div>
 
-                    <div class="project-box fade-in">
+                    <div class="project-box fade-in" data-category="ml-ops ai-ml">
                         <div class="project-icon">
                             <i class="fas fa-flask"></i>
                         </div>
@@ -707,7 +872,7 @@
                         </div>
                     </div>
 
-                    <div class="project-box fade-in">
+                    <div class="project-box fade-in" data-category="ai-ml">
                         <div class="project-icon">
                             <i class="fas fa-chart-line"></i>
                         </div>
@@ -730,7 +895,7 @@
                         </div>
                     </div>
 
-                    <div class="project-box fade-in">
+                    <div class="project-box fade-in" data-category="ai-ml">
                         <div class="project-icon">
                             <i class="fas fa-seedling"></i>
                         </div>
@@ -752,7 +917,7 @@
                         </div>
                     </div>
 
-                    <div class="project-box fade-in">
+                    <div class="project-box fade-in" data-category="gen-ai ai-ml">
                         <div class="project-icon">
                             <i class="fas fa-book"></i>
                         </div>
@@ -792,11 +957,11 @@
                             <div class="step-details">
                                 <p style="margin-bottom: 0.5rem;"><strong>Technologies:</strong> Python, C++, Spark, SQL, REST APIs, Linux, Pytest</p>
                                 <ul>
-                                    <li>Building an AI system for real-time emotion and speaker detection to enhance LLM-based meeting insights using OpenAI, Gemini, and Pinecone</li>
-                                    <li>Designing an MCP server-based multi-agent framework where detection, reasoning, and feedback agents collaborate for context-aware responses</li>
-                                    <li>Creating FastAPI microservices with Redis and AWS ECS, improving inter-agent latency by 35% and ensuring scalable performance</li>
-                                    <li>Developing large-scale distributed systems for real-time ML inference with high throughput and low latency requirements</li>
-                                    <li>Implementing agentic systems architecture for intelligent automation and decision-making workflows</li>
+                                    <li>Built a real-time marketplace decisioning system that optimized content allocation under latency, diversity, and fatigue constraints, analogous to ads delivery optimization</li>
+                                    <li>Designed utility-based ranking and allocation logic balancing short-term engagement with long-term retention and saturation effects, explicitly modeling relevance–exposure trade-offs</li>
+                                    <li>Implemented auction-like prioritization mechanisms to resolve competing candidates under limited surface area, incorporating pacing, exposure caps, and budget-style constraints</li>
+                                    <li>Productionized the decisioning system and instrumentation to support online A/B testing, counterfactual analysis, and iterative policy tuning in a low-latency production environment</li>
+                                    <li>Building AI systems for real-time emotion and speaker detection to enhance LLM-based meeting insights using OpenAI, Gemini, and Pinecone</li>
                                 </ul>
                             </div>
                         </div>
@@ -822,10 +987,11 @@
                             <p class="step-place">Clients: Crew Clothing, Morrisons</p>
                             <div class="step-details">
                                 <ul>
-                                    <li>Implemented Python inference services that replaced components of a legacy ML pipeline, allowing models to run in parallel and making the checkout process 45% faster for users</li>
-                                    <li>Designed fraud detection diagnostics leveraging Isolation Forest and anomaly detection, with Prometheus and Grafana dashboards giving client fraud/ops teams real-time alerts and reducing fraudulent transactions</li>
+                                    <li>Built ranking, pricing, and allocation pipelines over large-scale retail transaction and browsing data, improving decision accuracy by 25%</li>
+                                    <li>Designed feature engineering workflows modeling customer response, retention, elasticity, and seasonality to support econometric and ML analysis</li>
+                                    <li>Integrated real-time ML inference into backend services supporting 500K+ daily events, meeting strict latency and availability requirements</li>
+                                    <li>Implemented experiment design, causal analysis, drift detection, and data quality checks, reducing model-related production incidents by 20%</li>
                                     <li>Delivered a "Frequently Bought Together" recommendation microservice integrated into a monorepo ecosystem, applying ML-driven personalization that boosted cart conversions by 25%</li>
-                                    <li>Worked with QA and DevOps to integrate ML microservices into Jenkins CI/CD pipelines using automated tests and Dockerized builds, improving deployment reliability</li>
                                 </ul>
                             </div>
                         </div>
@@ -962,5 +1128,7 @@
     <script src="assets/js/parallax.js"></script>
     <script src="assets/js/chatbot.js"></script>
     <script src="assets/js/tech-radar.js"></script>
+    <script src="assets/js/project-filter.js"></script>
+    <script src="assets/js/ui-enhancements.js"></script>
 </body>
 </html>

@@ -590,6 +590,14 @@ section {
     background: var(--purple-flow);
 }
 
+.skill-box:nth-child(8) h3 {
+    color: var(--bright-yellow);
+}
+
+.skill-box:nth-child(8)::before {
+    background: linear-gradient(135deg, var(--bright-yellow), var(--pale-yellow));
+}
+
 .skill-list {
     display: flex;
     flex-wrap: wrap;
