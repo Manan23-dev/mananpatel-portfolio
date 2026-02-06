@@ -559,46 +559,70 @@
                         ML Engineering Pipeline
                     </h3>
                     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; align-items: center;">
-                        <div style="text-align: center; padding: 1rem;">
-                            <div style="width: 60px; height: 60px; background: var(--orange-flow); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem;">
+                        <div class="pipeline-step" style="text-align: center; padding: 1rem; position: relative;">
+                            <div class="pipeline-icon" style="width: 60px; height: 60px; background: var(--orange-flow); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; cursor: pointer; transition: transform 0.3s ease;">
                                 <i class="fas fa-database" style="color: var(--dark-bg); font-size: 1.5rem;"></i>
                             </div>
                             <p style="color: var(--gray-text); font-size: 0.9rem;">Data Collection</p>
+                            <div class="pipeline-tooltip">
+                                <h4>Data Collection</h4>
+                                <p>Gathering raw data from multiple sources including databases, APIs, and real-time streams. Ensuring data quality, completeness, and proper schema validation.</p>
+                            </div>
                         </div>
                         <div style="color: var(--main-orange); font-size: 1.5rem;">→</div>
-                        <div style="text-align: center; padding: 1rem;">
-                            <div style="width: 60px; height: 60px; background: var(--purple-flow); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem;">
+                        <div class="pipeline-step" style="text-align: center; padding: 1rem; position: relative;">
+                            <div class="pipeline-icon" style="width: 60px; height: 60px; background: var(--purple-flow); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; cursor: pointer; transition: transform 0.3s ease;">
                                 <i class="fas fa-cogs" style="color: var(--dark-bg); font-size: 1.5rem;"></i>
                             </div>
                             <p style="color: var(--gray-text); font-size: 0.9rem;">Preprocessing</p>
+                            <div class="pipeline-tooltip">
+                                <h4>Preprocessing</h4>
+                                <p>Cleaning, normalizing, and transforming raw data into a format suitable for model training. Includes feature engineering, handling missing values, and data augmentation.</p>
+                            </div>
                         </div>
                         <div style="color: var(--main-purple); font-size: 1.5rem;">→</div>
-                        <div style="text-align: center; padding: 1rem;">
-                            <div style="width: 60px; height: 60px; background: var(--blue-glow); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; background: linear-gradient(135deg, var(--main-blue), var(--soft-blue));">
+                        <div class="pipeline-step" style="text-align: center; padding: 1rem; position: relative;">
+                            <div class="pipeline-icon" style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--main-blue), var(--soft-blue)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; cursor: pointer; transition: transform 0.3s ease;">
                                 <i class="fas fa-brain" style="color: var(--dark-bg); font-size: 1.5rem;"></i>
                             </div>
                             <p style="color: var(--gray-text); font-size: 0.9rem;">Model Training</p>
+                            <div class="pipeline-tooltip">
+                                <h4>Model Training</h4>
+                                <p>Training machine learning models using frameworks like PyTorch and TensorFlow. Optimizing hyperparameters, implementing early stopping, and managing experiment tracking with MLflow.</p>
+                            </div>
                         </div>
                         <div style="color: var(--main-blue); font-size: 1.5rem;">→</div>
-                        <div style="text-align: center; padding: 1rem;">
-                            <div style="width: 60px; height: 60px; background: var(--success-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem;">
+                        <div class="pipeline-step" style="text-align: center; padding: 1rem; position: relative;">
+                            <div class="pipeline-icon" style="width: 60px; height: 60px; background: var(--success-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; cursor: pointer; transition: transform 0.3s ease;">
                                 <i class="fas fa-chart-bar" style="color: var(--dark-bg); font-size: 1.5rem;"></i>
                             </div>
                             <p style="color: var(--gray-text); font-size: 0.9rem;">Evaluation</p>
+                            <div class="pipeline-tooltip">
+                                <h4>Evaluation</h4>
+                                <p>Assessing model performance using metrics like accuracy, precision, recall, and F1-score. Conducting cross-validation, A/B testing, and analyzing model behavior on test datasets.</p>
+                            </div>
                         </div>
                         <div style="color: var(--success-green); font-size: 1.5rem;">→</div>
-                        <div style="text-align: center; padding: 1rem;">
-                            <div style="width: 60px; height: 60px; background: var(--bright-yellow); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem;">
+                        <div class="pipeline-step" style="text-align: center; padding: 1rem; position: relative;">
+                            <div class="pipeline-icon" style="width: 60px; height: 60px; background: var(--bright-yellow); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; cursor: pointer; transition: transform 0.3s ease;">
                                 <i class="fas fa-rocket" style="color: var(--dark-bg); font-size: 1.5rem;"></i>
                             </div>
                             <p style="color: var(--gray-text); font-size: 0.9rem;">Deployment</p>
+                            <div class="pipeline-tooltip">
+                                <h4>Deployment</h4>
+                                <p>Containerizing models with Docker, orchestrating with Kubernetes, and deploying to cloud platforms like AWS ECS. Implementing CI/CD pipelines for automated, reliable releases.</p>
+                            </div>
                         </div>
                         <div style="color: var(--bright-yellow); font-size: 1.5rem;">→</div>
-                        <div style="text-align: center; padding: 1rem;">
-                            <div style="width: 60px; height: 60px; background: var(--orange-flow); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem;">
+                        <div class="pipeline-step" style="text-align: center; padding: 1rem; position: relative;">
+                            <div class="pipeline-icon" style="width: 60px; height: 60px; background: var(--orange-flow); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; cursor: pointer; transition: transform 0.3s ease;">
                                 <i class="fas fa-sync-alt" style="color: var(--dark-bg); font-size: 1.5rem;"></i>
                             </div>
                             <p style="color: var(--gray-text); font-size: 0.9rem;">Monitoring</p>
+                            <div class="pipeline-tooltip">
+                                <h4>Monitoring</h4>
+                                <p>Tracking model performance in production using Prometheus and Grafana. Monitoring latency, throughput, prediction drift, and system health. Setting up alerts for anomalies.</p>
+                            </div>
                         </div>
                     </div>
                     <div style="margin-top: 2rem; padding: 1.5rem; background: var(--dark-bg); border-radius: 8px;">
