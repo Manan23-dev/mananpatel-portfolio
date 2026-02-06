@@ -67,6 +67,8 @@ window.addEventListener('load', function() {
             typeText(typingEl, originalContent, 100);
         }, 1500);
     }
+    
+    initSayHiSpiral();
 });
 
 function typeText(element, text, speed = 100) {
@@ -113,6 +115,7 @@ function setupEnhancedIntersectionObserver() {
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     setupEnhancedIntersectionObserver();
+    setupSayHiSpiralObserver();
     
     // Force show content if animations fail
     setTimeout(() => {
@@ -164,3 +167,48 @@ function optimizeAnimations() {
 
 // Initialize performance optimizations
 window.addEventListener('load', optimizeAnimations);
+
+// Memv-style spiral in "say hi" section
+function initSayHiSpiral() {
+    const container = document.getElementById('sayHiSpiral');
+    if (!container) return;
+
+    const prefersReduced = window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    const dotCount = 260;
+    const maxRadius = container.offsetWidth / 2 - 6;
+    const angleStep = 0.32;
+    const radiusStep = maxRadius / dotCount;
+
+    for (let i = 0; i < dotCount; i++) {
+        const dot = document.createElement('span');
+        dot.className = 'spiral-dot';
+
+        const angle = i * angleStep;
+        const radius = 4 + i * radiusStep * 0.85;
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+
+        dot.style.transform = `translate(calc(50% + ${x}px), calc(50% + ${y}px))`;
+        container.appendChild(dot);
+    }
+}
+
+function setupSayHiSpiralObserver() {
+    const shell = document.querySelector('.say-hi-spiral');
+    if (!shell || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                shell.classList.add('active');
+            } else {
+                shell.classList.remove('active');
+            }
+        });
+    }, { threshold: 0.2 });
+
+    observer.observe(shell);
+}

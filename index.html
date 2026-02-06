@@ -13,8 +13,10 @@
     <meta property="og:url" content="https://manan23-dev.github.io/mananpatel-portfolio">
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
+    <!-- Typography: Clash Display, Satoshi, DM Sans, JetBrains Mono -->
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/animations.css">
     <style>
@@ -195,8 +197,10 @@
             font-weight: 700;
             background: var(--innovate-mix);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             display: block;
+            font-family: 'DM Sans', system-ui, sans-serif;
         }
         
         .stat-label {
@@ -224,6 +228,9 @@
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="lab.html">Lab</a></li>
             </ul>
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
             <div class="burger" id="menuToggle">
                 <i class="fas fa-bars"></i>
             </div>
@@ -231,7 +238,8 @@
     </header>
 
     <main>
-        <section id="home" class="hero-area">
+        <section id="home" class="hero-area"
+                 style="--hero-bg: url('assets/images/bg/golden-gate-sunset.webp');">
             <div class="wrapper">
                 <div class="hero-text">
                     <h1>Manan Patel</h1>
@@ -260,12 +268,13 @@
             </div>
         </section>
 
-        <section id="about" class="about-me">
+        <section id="about" class="about-me"
+                 style="--about-bg: url('assets/images/bg/sf-skyline-silhouette.webp');">
             <div class="wrapper">
                 <h2 class="big-title fade-in">About Me</h2>
                 <div class="about-grid fade-in">
                     <div class="photo-area">
-                        <img src="assets/images/manan-profile.jpg" alt="Manan Patel" class="my-photo">
+                        <img src="assets/images/manan-profile.jpg" alt="Manan Patel" class="my-photo" loading="lazy" decoding="async">
                     </div>
                     <div class="about-words">
                         <h3>Hi, I'm Manan!</h3>
@@ -412,6 +421,59 @@
             </div>
         </section>
 
+        <section id="integrations" class="integrations">
+            <div class="wrapper">
+                <div class="fade-in">
+                    <p class="section-label">INTEGRATIONS</p>
+                    <h2 class="big-title" style="margin-bottom: 1rem;">Seamless Integration For Smarter Workflows</h2>
+                    <p style="color: var(--gray-text); max-width: 640px; margin: 0 auto 3rem; text-align: center;">
+                        Your agents, tools, and data sources connected through a calm, resilient backbone — from Slack and Drive
+                        to AWS, Notion, and more.
+                    </p>
+                </div>
+
+                <div class="integrations-visual fade-in">
+                    <div class="integrations-row integrations-row-top">
+                        <div class="integration-pill"><i class="fab fa-slack"></i><span>Slack</span></div>
+                        <div class="integration-pill"><i class="fab fa-google-drive"></i><span>Drive</span></div>
+                        <div class="integration-pill"><i class="fab fa-aws"></i><span>AWS</span></div>
+                        <div class="integration-pill"><i class="fas fa-book"></i><span>Notion</span></div>
+                        <div class="integration-pill"><i class="fas fa-video"></i><span>Meet</span></div>
+                        <div class="integration-pill"><i class="fas fa-video-slash"></i><span>Zoom</span></div>
+                    </div>
+
+                    <div class="integrations-center-node">
+                        <div class="integration-core">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                    </div>
+
+                    <div class="integrations-row integrations-row-bottom">
+                        <div class="integration-pill"><i class="fas fa-comments"></i><span>Chat Agents</span></div>
+                        <div class="integration-pill"><i class="fas fa-headset"></i><span>Support</span></div>
+                        <div class="integration-pill"><i class="fas fa-microphone-alt"></i><span>Voice</span></div>
+                        <div class="integration-pill"><i class="fas fa-film"></i><span>Video</span></div>
+                    </div>
+
+                    <svg class="integrations-svg" viewBox="0 0 1200 480" preserveAspectRatio="none" aria-hidden="true">
+                        <!-- Top fan-in -->
+                        <path class="integration-line" d="M150 140 C 300 210, 480 220, 600 260" />
+                        <path class="integration-line" d="M350 130 C 420 200, 520 220, 600 260" />
+                        <path class="integration-line" d="M550 120 C 560 190, 580 230, 600 260" />
+                        <path class="integration-line" d="M750 130 C 680 200, 680 220, 600 260" />
+                        <path class="integration-line" d="M950 140 C 780 210, 720 220, 600 260" />
+
+                        <!-- Bottom fan-out -->
+                        <path class="integration-line" d="M600 260 C 480 300, 300 310, 150 360" />
+                        <path class="integration-line" d="M600 260 C 520 300, 420 320, 350 360" />
+                        <path class="integration-line" d="M600 260 C 600 300, 600 320, 600 360" />
+                        <path class="integration-line" d="M600 260 C 680 300, 780 320, 850 360" />
+                        <path class="integration-line" d="M600 260 C 720 300, 900 310, 1050 360" />
+                    </svg>
+                </div>
+            </div>
+        </section>
+
         <section id="tech-radar" class="about-me">
             <div class="wrapper">
                 <h2 class="big-title fade-in">Tech Radar</h2>
@@ -548,7 +610,8 @@
             </div>
         </section>
 
-        <section id="projects" class="work-showcase">
+        <section id="projects" class="work-showcase"
+                 style="--projects-bg: url('assets/images/bg/bay-bridge-night.webp');">
             <div class="wrapper">
                 <h2 class="big-title fade-in">Featured Projects</h2>
                 <div style="text-align: center; margin-bottom: 2rem;">
@@ -1039,7 +1102,8 @@
             </div>
         </section>
 
-        <section id="contact" class="get-in-touch">
+        <section id="contact" class="get-in-touch"
+                 style="--contact-bg: url('assets/images/bg/crissy-field.webp');">
             <div class="wrapper">
                 <h2 class="big-title">Get In Touch</h2>
                 <div class="contact-layout">
@@ -1091,6 +1155,61 @@
                             Send Message
                         </button>
                     </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pre-footer cooldown transition (AI-first / system-oriented) -->
+        <section id="say-hi" class="say-hi-transition">
+            <!-- Background: calm “memory graph / data streams” -->
+            <div class="say-hi-bg fade-in" aria-hidden="true">
+                <svg class="say-hi-graph" viewBox="0 0 1200 420" preserveAspectRatio="none">
+                    <!-- Layer 1 (slow) -->
+                    <g class="graph-layer layer-1">
+                        <path class="graph-line" d="M-50 120 C 160 40, 320 220, 520 140 S 880 60, 1250 170" />
+                        <path class="graph-line" d="M-80 260 C 140 180, 340 340, 560 250 S 900 140, 1280 270" />
+                        <path class="graph-line thin" d="M-120 200 C 120 110, 360 290, 600 200 S 940 110, 1320 210" />
+
+                        <circle class="graph-node" cx="180" cy="82" r="3" />
+                        <circle class="graph-node" cx="360" cy="214" r="2.5" />
+                        <circle class="graph-node" cx="540" cy="145" r="3.5" />
+                        <circle class="graph-node" cx="780" cy="110" r="2.75" />
+                        <circle class="graph-node" cx="990" cy="162" r="3.25" />
+                    </g>
+
+                    <!-- Layer 2 (slightly faster, diagonal drift) -->
+                    <g class="graph-layer layer-2">
+                        <path class="graph-line" d="M-40 70 C 210 120, 320 10, 540 80 S 860 180, 1240 110" />
+                        <path class="graph-line thin" d="M-60 330 C 220 250, 380 390, 640 320 S 980 250, 1260 340" />
+
+                        <circle class="graph-node small" cx="240" cy="108" r="2.25" />
+                        <circle class="graph-node small" cx="470" cy="58" r="2.25" />
+                        <circle class="graph-node small" cx="720" cy="130" r="2.25" />
+                        <circle class="graph-node small" cx="910" cy="168" r="2.25" />
+                    </g>
+
+                    <!-- Occasional “connections” (fade in/out) -->
+                    <g class="graph-layer layer-3">
+                        <path class="graph-connection" d="M260 110 L 360 214" />
+                        <path class="graph-connection" d="M540 145 L 720 130" />
+                        <path class="graph-connection" d="M780 110 L 910 168" />
+                    </g>
+                </svg>
+            </div>
+
+            <!-- Memv-style spiral visualization -->
+            <div class="say-hi-spiral-shell" aria-hidden="true">
+                <div class="say-hi-spiral" id="sayHiSpiral"></div>
+            </div>
+
+            <div class="wrapper">
+                <div class="say-hi-content fade-in">
+                    <h2 class="say-hi-title">say hi.</h2>
+                    <p class="say-hi-subtext">I enjoy working on systems that learn, scale, and last.</p>
+                    <a class="say-hi-cta" href="mailto:manan2301patel@gmail.com">
+                        Email me
+                        <span class="cta-arrow" aria-hidden="true">→</span>
+                    </a>
                 </div>
             </div>
         </section>

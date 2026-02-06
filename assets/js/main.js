@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeResumeDownload();
     setupActiveNavigation();
     initializeAccessibility();
+    initializeThemeToggle();
     
     // Ensure content is visible
     forceShowContent();
@@ -145,6 +146,49 @@ function initializeResumeDownload() {
             showNotification('Resume download will be available soon! Please contact me directly at manan2301patel@gmail.com for my latest resume.');
         });
     }
+}
+
+function initializeThemeToggle() {
+    const toggle = document.getElementById('themeToggle');
+    if (!toggle) return;
+
+    const storageKey = 'theme-preference';
+
+    function setIcon(isPureDark) {
+        const icon = toggle.querySelector('i');
+        if (!icon) return;
+        icon.classList.toggle('fa-moon', !isPureDark);
+        icon.classList.toggle('fa-sun', isPureDark);
+    }
+
+    function applyTheme(theme) {
+        const isPureDark = theme === 'pure-dark';
+        document.body.classList.toggle('theme-pure-dark', isPureDark);
+        setIcon(isPureDark);
+    }
+
+    // Load saved theme
+    try {
+        const saved = localStorage.getItem(storageKey);
+        if (saved === 'pure-dark' || saved === 'tech-sunset') {
+            applyTheme(saved);
+        } else {
+            applyTheme('tech-sunset');
+        }
+    } catch (e) {
+        applyTheme('tech-sunset');
+    }
+
+    toggle.addEventListener('click', () => {
+        const isPureDark = document.body.classList.contains('theme-pure-dark');
+        const nextTheme = isPureDark ? 'tech-sunset' : 'pure-dark';
+        applyTheme(nextTheme);
+        try {
+            localStorage.setItem(storageKey, nextTheme);
+        } catch (e) {
+            // ignore
+        }
+    });
 }
 
 function setupActiveNavigation() {
