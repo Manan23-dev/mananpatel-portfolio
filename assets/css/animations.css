@@ -41,6 +41,47 @@
     }
 }
 
+/* Say Hi “memory graph / data flow” (calm, deliberate motion) */
+@keyframes sayHiDriftX {
+    0% { transform: translateX(-1.5%) translateY(0); }
+    50% { transform: translateX(1.5%) translateY(0); }
+    100% { transform: translateX(-1.5%) translateY(0); }
+}
+
+@keyframes sayHiDriftDiag {
+    0% { transform: translateX(1.2%) translateY(0.6%); }
+    50% { transform: translateX(-1.2%) translateY(-0.6%); }
+    100% { transform: translateX(1.2%) translateY(0.6%); }
+}
+
+@keyframes sayHiDash {
+    0% { stroke-dashoffset: 0; opacity: 0.85; }
+    50% { stroke-dashoffset: -22; opacity: 1; }
+    100% { stroke-dashoffset: -44; opacity: 0.85; }
+}
+
+@keyframes sayHiNodePulse {
+    0%, 100% { opacity: 0.6; transform: translateZ(0) scale(1); }
+    50% { opacity: 0.95; transform: translateZ(0) scale(1.08); }
+}
+
+@keyframes sayHiConnect {
+    0%, 72% { opacity: 0; }
+    76% { opacity: 0.7; }
+    86% { opacity: 0.35; }
+    100% { opacity: 0; }
+}
+
+@keyframes sayHiSpiralRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes integrationFlow {
+    0% { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: -140; }
+}
+
 .grid-pattern {
     animation: slidePattern 20s linear infinite;
 }
@@ -334,8 +375,18 @@ html {
     .grid-pattern,
     .dot,
     .falling-code,
-    .shape {
+    .shape,
+    .say-hi-spiral,
+    .integration-line {
         animation: none;
+    }
+
+    .say-hi-graph,
+    .graph-layer,
+    .graph-line,
+    .graph-node,
+    .graph-connection {
+        animation: none !important;
     }
     
     .fade-in {
