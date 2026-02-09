@@ -17,7 +17,7 @@
     --bg-1: #101010;
     --bg-2: var(--rich-black);
     --text-0: var(--pure-white);
-    --text-1: var(--fog-gray);
+    --text-1: #F0F4F8; /* Very bright light gray for excellent contrast on dark backgrounds */
     --border-0: rgba(229, 231, 235, 0.12);
 
     /* Legacy aliases so existing styles keep working */
@@ -25,8 +25,8 @@
     --darker-bg: var(--bg-1);
     --darkest-bg: var(--bg-2);
     --white-text: var(--text-0);
-    --gray-text: var(--text-1);
-    --light-gray: var(--fog-gray);
+    --gray-text: var(--text-1); /* Now uses very bright #F0F4F8 for excellent visibility */
+    --light-gray: #E8EDF3; /* Bright light gray for subtle elements */
     --border-line: var(--border-0);
 
     --main-orange: var(--bridge-orange);
@@ -319,6 +319,11 @@ section {
     opacity: 0.1;
 }
 
+.hero-text {
+    position: relative;
+    z-index: 2;
+}
+
 .hero-text h1 {
     font-size: var(--h1);
     margin-bottom: 1rem;
@@ -329,6 +334,7 @@ section {
     position: relative;
     font-family: 'Clash Display', 'Satoshi', system-ui, sans-serif;
     font-weight: 800;
+    z-index: 2;
 }
 
 .hero-text .job-title {
@@ -356,10 +362,13 @@ section {
     max-width: 600px;
     margin: 0 auto 2rem;
     color: var(--gray-text);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 2;
 }
 
 .hero-text .special {
-    background: var(--leader-mix);
+    background: linear-gradient(135deg, #60A5FA, #3B82F6, #1A73E8);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -557,6 +566,7 @@ section {
     font-size: 1.1rem;
     line-height: 1.8;
     color: var(--gray-text);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .about-words h3 {
@@ -572,6 +582,210 @@ section {
 
 .tech-skills {
     background: var(--dark-bg);
+}
+
+/* LeetCode Stats Section */
+.leetcode-section {
+    background: var(--dark-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.leetcode-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(26, 115, 232, 0.08), transparent 70%);
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.leetcode-section .wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.leetcode-stats-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+.leetcode-card {
+    background: linear-gradient(145deg, rgba(13,13,13,0.95), rgba(18,18,18,0.96));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 2.5rem;
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--deep-shadow);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.leetcode-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(26, 115, 232, 0.3);
+}
+
+.leetcode-stat-main {
+    margin-bottom: 1.5rem;
+}
+
+.leetcode-stat-number {
+    font-size: 4rem;
+    font-weight: 800;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--creative-mix);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.leetcode-stat-label {
+    font-size: 1.1rem;
+    color: var(--gray-text);
+    font-weight: 500;
+}
+
+.leetcode-stat-ranking {
+    font-size: 0.9rem;
+    color: var(--ocean-blue);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.leetcode-difficulty-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.leetcode-difficulty-item {
+    background: linear-gradient(145deg, rgba(13,13,13,0.95), rgba(18,18,18,0.96));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.leetcode-difficulty-item:hover {
+    transform: translateY(-2px);
+}
+
+.leetcode-difficulty-item.leetcode-easy:hover {
+    border-color: rgba(34, 197, 94, 0.3);
+}
+
+.leetcode-difficulty-item.leetcode-medium:hover {
+    border-color: rgba(251, 191, 36, 0.3);
+}
+
+.leetcode-difficulty-item.leetcode-hard:hover {
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.difficulty-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--gray-text);
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+}
+
+.difficulty-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.leetcode-easy .difficulty-dot {
+    background: #22c55e;
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.4);
+}
+
+.leetcode-medium .difficulty-dot {
+    background: #fbbf24;
+    box-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
+}
+
+.leetcode-hard .difficulty-dot {
+    background: #ef4444;
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
+}
+
+.difficulty-count {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--white-text);
+}
+
+.leetcode-easy .difficulty-count {
+    color: #22c55e;
+}
+
+.leetcode-medium .difficulty-count {
+    color: #fbbf24;
+}
+
+.leetcode-hard .difficulty-count {
+    color: #ef4444;
+}
+
+.leetcode-link-container {
+    margin-top: 1rem;
+}
+
+.leetcode-profile-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(26, 115, 232, 0.1);
+    border: 1px solid rgba(26, 115, 232, 0.3);
+    border-radius: 8px;
+    color: var(--ocean-blue);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.leetcode-profile-link:hover {
+    background: rgba(26, 115, 232, 0.2);
+    border-color: rgba(26, 115, 232, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.2);
+}
+
+@media (max-width: 768px) {
+    .leetcode-stat-number {
+        font-size: 3rem;
+    }
+    
+    .leetcode-difficulty-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .leetcode-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .difficulty-count {
+        font-size: 1.5rem;
+    }
 }
 
 .integrations {
@@ -1037,6 +1251,7 @@ section {
     color: var(--gray-text);
     margin-bottom: 1rem;
     line-height: 1.6;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .tech-used {
@@ -1264,6 +1479,7 @@ section {
     color: var(--gray-text);
     font-size: 0.9rem;
     line-height: 1.6;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .step-details ul {
